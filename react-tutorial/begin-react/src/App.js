@@ -1,13 +1,12 @@
 import React from "react";
-import Hello from "./Hello.js";
+import Counter from "./counter.js";
+import InputSample from "./InputSample.js";
 
 function App() {
   return (
     <div>
-      <Hello />
-      <Hello />
-      <Hello />
-      <input></input>
+      <Counter/>
+      <InputSample/>
       <br></br>
     </div>
   );
