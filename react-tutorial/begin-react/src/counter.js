@@ -7,7 +7,7 @@ function Counter(){
         setNumber(preNumber => preNumber+1 );
     }
     const onDecrease = ()=>{
-        setNumber(number -1);
+        setNumber(preNumber => preNumber-1);
     }
     return(
         <div>
