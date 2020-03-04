@@ -1,4 +1,4 @@
-import React, {useState, useRef, useMemo, useCallback} from "react";
+import React, {useReducer, useRef, useMemo, useCallback} from "react";
 import UserList from './UserList.js';
 import CreateUser from './createUser.js'
 
@@ -7,22 +7,12 @@ function countActiveUsers(users){
   return users.filter(user=>user.active).length
 }
 
-function App() {
-  const [inputs, setInputs] = useState({
+const intialState = {
+  inputs:{
     username:'',
     email:'',
-  });
-  const {username,email} = inputs;
-
-  const onChange = useCallback((e) => {
-    const {name, value} = e.target;
-        setInputs({
-            ...inputs,
-            [name] : value,
-        });
-
-  })
-  const [users,setUsers] = useState([
+  },
+  users:[
     {
         id : 1,
         username : 'David',
@@ -41,41 +31,18 @@ function App() {
         email:'kate@naver.com',
         active:false,
     },
-  ])
-  const nextId = useRef(4);
+  ]
+}
 
-  const onCreate = useCallback(() => {
-    const user ={
-      id:nextId.current,
-      username,
-      email
-    }
-    setUsers(users=>users.concat(user))
-    setInputs({
-      username:'',
-      email:''
-
-  });
-    nextId.current+=1;
-  },[username,email])
-
-  const onDelite=useCallback((id)=>{
-    setUsers(users => users.filter(users => users.id !== id))
-  },[])
-
-  const onToggle=useCallback((id)=>{
-    setUsers(users => users.map(user => user.id===id?{...user,active:!user.active}:user))
-  },[])
-  
-  const count = useMemo(()=>countActiveUsers(users),[users]);
+function App() {
+  // const [number, dispatch ] = useReducer(reducer,0)
   return (
     <div>
-      <CreateUser username={username} email={email} onChange={onChange} onCreate = {onCreate}/>
+      <CreateUser />
       <br></br>
-      <b>{users.length}</b>
-      <UserList users={users} onDelite={onDelite} onToggle={onToggle}/>
+      <UserList users={[]} />
       <br></br>
-      {count}
+      0
     </div>
   );
 }
