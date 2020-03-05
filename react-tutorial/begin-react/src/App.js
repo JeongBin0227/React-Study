@@ -1,4 +1,4 @@
-import React, {useReducer, useRef, useMemo, useCallback} from "react";
+import React, {useReducer, useRef, useMemo, useCallback, useState} from "react";
 import UserList from './UserList.js';
 import CreateUser from './createUser.js'
 
@@ -12,6 +12,7 @@ const intialState = {
     username:'',
     email:'',
   },
+  nextId:4,
   users:[
     {
         id : 1,
@@ -33,14 +34,70 @@ const intialState = {
     },
   ]
 }
-
+function reducer(state,action){
+	switch(action.type){
+		case 'CHANGE_VALUE':
+			return {
+        ...state,
+        inputs:{
+          ...state.inputs,
+          [action.name] : action.value
+        }
+      };
+    case 'CREATE_VALUE':
+      return{
+        inputs:intialState.inputs,
+        users : state.users.concat(action.user)
+      };
+    case 'DELITE_VALUE':
+      return{
+        inputs:intialState.inputs,
+        users : state.users.concat(action.user)
+      };
+		defalut:
+			throw new Error('unhandled action')
+	}
+}
 function App() {
-  // const [number, dispatch ] = useReducer(reducer,0)
+  const [state, dispatch ] = useReducer(reducer,intialState);
+  const {users} = state;
+  const {username,email} = state.inputs;
+  const nextId = useRef(4)
+  
+  const onChange= useCallback(e=>{
+    const {name,value} = e.target
+    dispatch({
+      type:'CHANGE_VALUE',
+      name,
+      value
+    })
+  },[])
+
+  const onCreate= useCallback(()=>{
+    const user={
+        id:nextId.current,
+        username,
+        email
+    }
+    dispatch({
+      type:'CREATE_VALUE',
+      user
+    })
+    nextId.current++
+  },[username,email])
+
+  const onDelite = useCallback((id)=>{
+    dispatch({
+      type:'DELITE_VALUE',
+      id
+    })
+  },[])
+
   return (
     <div>
-      <CreateUser />
+      <CreateUser username={username} email={email} onChange={onChange} onCreate={onCreate}/>
       <br></br>
-      <UserList users={[]} />
+      <UserList users={users} onDelite={} onToggle={} />
       <br></br>
       0
     </div>
