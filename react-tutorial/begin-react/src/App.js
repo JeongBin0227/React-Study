@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 import UserList from './UserList.js';
 import CreateUser from './createUser.js';
+import UseInputs from './useInputs.js';
 
 function countActiveUsers(users) {
     console.log('활성 사용자 수를 세는중..');
@@ -15,10 +16,6 @@ function countActiveUsers(users) {
 }
 
 const intialState = {
-    inputs: {
-        username: '',
-        email: '',
-    },
     nextId: 4,
     users: [
         {
@@ -43,14 +40,6 @@ const intialState = {
 };
 function reducer(state, action) {
     switch (action.type) {
-        case 'CHANGE_VALUE':
-            return {
-                ...state,
-                inputs: {
-                    ...state.inputs,
-                    [action.name]: action.value,
-                },
-            };
         case 'CREATE_VALUE':
             return {
                 inputs: intialState.inputs,
@@ -71,17 +60,12 @@ function App() {
     }, []);
     const [state, dispatch] = useReducer(reducer, intialState);
     const { users } = state;
-    const { username, email } = state.inputs;
+    const [form, onChange, reset] = UseInputs({
+        username: '',
+        email: '',
+    });
+    const { username, email } = form;
     const nextId = useRef(4);
-
-    const onChange = useCallback(e => {
-        const { name, value } = e.target;
-        dispatch({
-            type: 'CHANGE_VALUE',
-            name,
-            value,
-        });
-    }, []);
 
     const onCreate = useCallback(() => {
         const user = {
@@ -94,7 +78,8 @@ function App() {
             user,
         });
         nextId.current++;
-    }, [username, email]);
+        reset();
+    }, [username, email, reset]);
 
     const onDelite = useCallback(id => {
         dispatch({
@@ -112,7 +97,7 @@ function App() {
                 onCreate={onCreate}
             />
             <br></br>
-            <UserList users={users} onDelite={} onToggle={} />
+            <UserList users={users} onDelite={onDelite} />
             <br></br>0
         </div>
     );
