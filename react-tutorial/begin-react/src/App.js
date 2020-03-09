@@ -55,10 +55,14 @@ function reducer(state, action) {
 }
 function App() {
     const [value, setValue] = useState(0);
+
     useEffect(() => {
         console.log(value);
     }, []);
     const [state, dispatch] = useReducer(reducer, intialState);
+
+
+
     const { users } = state;
     const [form, onChange, reset] = UseInputs({
         username: '',
