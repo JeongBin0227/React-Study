@@ -4,6 +4,7 @@ import Today from "./Today.js";
 import TodoList from "./components/TodoList.js";
 import TodoTemplateplate from "./components/TodoTemplate.js";
 import TodoHead from "./components/TodoHead.js";
+import TodoCreate from "./components/TodoCreate.js";
 
 const GlobalStyle = createGlobalStyle`
   body{
@@ -36,6 +37,7 @@ function App() {
           남음
         </b> */}
         <TodoList></TodoList>
+        <TodoCreate></TodoCreate>
         {/* {todolist.map(todolist => (
           <TodoList todolist={todolist} onChage={onChage}></TodoList>
         ))} */}
