@@ -19,7 +19,7 @@ const CircleButton = styled.button`
   align-items: center;
   justify-content: center;
 
-  poisition: absolute;
+  position: absolute;
   left: 50%;
   bottom: 0px;
   transform: translate(-50%, 50%);
@@ -44,6 +44,7 @@ const CircleButton = styled.button`
       }
       transform: translate(-50%, 50%) rotate(45deg);
     `}
+
 }
 `;
 const InsertFormPositioner = styled.div`
@@ -61,14 +62,14 @@ const InsertForm = styled.div`
   border-top: 1px solid #e9ecef;
 `;
 
-const Input = styled.div`
-    padding:12px;
-    border-radius:4px;
-    border : 1px solid #dee2e6;
-    width:100%
-    outline:none;
-    font-size:18px;
-    box-sizing:border-box;
+const Input = styled.input`
+  padding: 12px;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  width: 100%;
+  outline: none;
+  font-size: 18px;
+  box-sizing: border-box;
 `;
 function TodoCreate() {
   const [open, setOpen] = useState(false);
