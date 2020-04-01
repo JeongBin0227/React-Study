@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import MyComponent from './MyComponent'
 
 class Counter extends Component {
   state={
