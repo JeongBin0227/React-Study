@@ -1,11 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Say from './Say'
+import EventPracticeComponent from './EventPracticeComponent'
 function App() {
   return (
     <>
-      <Say/>
+      <EventPracticeComponent/>
     </>
   )
 
