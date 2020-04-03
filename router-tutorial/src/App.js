@@ -2,7 +2,9 @@ import React from 'react'
 import {Route, Link} from 'react-router-dom'
 import About from './About'
 import Home from './Home'
-import Profile from './Profile'
+import Profiles from './Profiles'
+import HistorySample from './HistorySample'
+import WithRouterSample from './WithRouterSample'
 import './App.css'
 
 function App() {
@@ -16,16 +18,18 @@ function App() {
           <Link to="/about">소개</Link>
         </li>
         <li>
-          <Link to='/profile/velopert'>velopert 프로필 </Link>
+          <Link to='/profiles'> 프로필 </Link>
         </li>
         <li>
-          <Link to='/profile/gildong'>gildong 프로필 </Link>
+          <Link to='/history'> 히스토리 예제 </Link>
         </li>
       </ul>
       <Route path="/" component={Home} exact={true}/>
       <Route path="/about" component={About}/>
       <Route path="/info" component={About}/>
-      <Route path="/profile/:username" component={Profile}/>
+      <Route path="/profiles" component={Profiles}/>
+      <Route path="/history" component={HistorySample}/>
+      <WithRouterSample/>
     </div>
   )
 }
