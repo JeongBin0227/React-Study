@@ -1,7 +1,6 @@
 import React from 'react'
 import ColorBox from './components/ColorBox'
 import {ColorProvider} from './contexts/color'
-import logo from './logo.svg'
 import './App.css'
 
 const App = ()=> {
@@ -10,7 +9,7 @@ const App = ()=> {
       <div>
         <ColorBox/>
       </div>
-    </ColorProvider>
+     </ColorProvider>
   )
 }
 
