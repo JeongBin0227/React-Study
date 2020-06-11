@@ -7,15 +7,8 @@ import React from "react";
 function App() {
   return (
     <HashRouter>
-      <Route path="/home">
-        <h1>Home</h1>
-      </Route>
-      <Route path="/home/introduction">
-        <h1>Introduction</h1>
-      </Route>
-      <Route path="/about">
-        <h1>about</h1>
-      </Route>
+      <Route exact={true} path="/home" component={Home}></Route>
+      <Route exact={true} path="/about" component={About}></Route>
     </HashRouter>
   );
 }
