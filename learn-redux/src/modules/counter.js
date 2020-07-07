@@ -9,7 +9,7 @@ const SET_DIFF = 'counter/SET_DIFF'
 
 export const increase = () => ({type: INCREASE})
 export const decrease = () => ({type: DECREASE})
-export const set_diff = (diff) => ({type: SET_DIFF, diff})
+export const setDiff = (diff) => ({type: SET_DIFF, diff})
 
 export default function counter(state = initialState, action) {
     switch(action.type){
