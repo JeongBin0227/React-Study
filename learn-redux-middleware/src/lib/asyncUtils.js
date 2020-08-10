@@ -1,3 +1,24 @@
+export const createPromiseThunck = (type, promiseCreator) => {
+    const [SUCCES,ERROR] = [`${type}_SUCCESS`,`${type}_ERROR`]
+
+    return param =>async dispatch => {
+        dispatch({type})
+        try {
+            const payload = await promiseCreator(param)
+            dispatch({
+                type:SUCCES,
+                payload
+            })
+        } catch (error) {
+            dispatch({
+                type:ERROR,
+                payload:error,
+                error:true
+            })
+        }
+    }
+}
+
 export const reducerUtils = {
     initial: (data = null) => ({
         data,
@@ -19,4 +40,33 @@ export const reducerUtils = {
         loading:false,
         error:error
     })
+}
+
+export const handleAsyncActions = (type,key) => {
+    const [SUCCES,ERROR] = [`${type}_SUCCESS`,`${type}_ERROR`]
+    return (state, action) => {
+        switch(action.type){
+            case type:{
+                return{
+                    ...state,
+                    [key] : reducerUtils.loading()
+                }
+            }
+            case SUCCES:{
+                return{
+                    ...state,
+                    [key]:reducerUtils.success(action.payload)
+                }
+            }
+            case ERROR:{
+                return{
+                    ...state,
+                    [key]:reducerUtils.error(action.payload)
+                }
+            }
+            default:{
+                return state
+            }
+        }
+    }
 }
