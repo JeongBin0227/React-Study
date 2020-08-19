@@ -1,5 +1,5 @@
 import * as postsAPI from '../api/posts'
-import { reducerUtils, createPromiseThunck, handleAsyncActions } from '../lib/asyncUtils'
+import { reducerUtils, createPromiseThunck, handleAsyncActions, createPromiseThunckById, handleAsyncActionsById } from '../lib/asyncUtils'
 
 const GET_POSTS = 'GET_POSTS'
 const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS'
@@ -53,20 +53,7 @@ const CLEAR_POST = 'CLEAR_POST'
 
 export const getPosts = createPromiseThunck(GET_POSTS,postsAPI.getPosts)
 
-export const getPost = id => async dispatch => {
-    dispatch({type:GET_POST, meta:id})
-    try {
-        const payload = await postsAPI.getPostById(id)
-        dispatch({type:GET_POSTS_SUCCESS,payload,meta:id})
-    } catch (e) {
-        dispatch({
-            type: GET_POSTS_ERROR,
-            payload:e,
-            error:true,
-            meta:id
-        })
-    }
-}
+export const getPost = createPromiseThunckById(GET_POST,postsAPI.getPostById)
 
 export const clearPost = () => ({type : CLEAR_POST})
 
@@ -76,37 +63,38 @@ const initialState = {
 }
 
 const getPostsReducer = handleAsyncActions(GET_POSTS,'posts',true)
-const getPostReducer = (state, action) => {
-    const id = action.meta
-    switch (action.type) {
-        case GET_POST:
-            return{
-                ...state,
-                post:{
-                    ...state.post,
-                    [id]:reducerUtils.loading(state.post[id]&&state.post[id].data)
-                }
-            }
-        case GET_POSTS_SUCCESS:
-            return{
-                ...state,
-                post:{
-                    ...state.post,
-                    [id]:reducerUtils.success(state.payload)
-                }
-            }
-        case GET_POST_ERROR:
-            return{
-                ...state,
-                post:{
-                    ...state.post,
-                    [id]:reducerUtils.error(action.payload)
-                }
-            }
-        default:
-            break;
-    }
-}
+const getPostReducer = handleAsyncActionsById(GET_POST,'post',true)
+// const getPostReducer = (state, action) => {
+//     const id = action.meta
+//     switch (action.type) {
+//         case GET_POST:
+//             return{
+//                 ...state,
+//                 post:{
+//                     ...state.post,
+//                     [id]:reducerUtils.loading(state.post[id]&&state.post[id].data)
+//                 }
+//             }
+//         case GET_POSTS_SUCCESS:
+//             return{
+//                 ...state,
+//                 post:{
+//                     ...state.post,
+//                     [id]:reducerUtils.success(state.payload)
+//                 }
+//             }
+//         case GET_POST_ERROR:
+//             return{
+//                 ...state,
+//                 post:{
+//                     ...state.post,
+//                     [id]:reducerUtils.error(action.payload)
+//                 }
+//             }
+//         default:
+//             break;
+//     }
+// }
 
 // export default function posts(state=initialState, action) {
 //     switch(action.type) {
