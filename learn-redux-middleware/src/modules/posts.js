@@ -14,7 +14,7 @@ const CLEAR_POST = 'CLEAR_POST'
 // export const getPosts = () => async dispatch => {
 //     // 요청이 시작됨
 //     dispatch({type:GET_POSTS})
-//     // API를 호출
+//     // ㅋAPI를 호출
 //     try {
 //         const posts = await postsAPI.getPosts()
 //         // 성공했을 때

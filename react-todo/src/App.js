@@ -1,26 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
+import PropTypes from 'prop-types'
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state={
+    todos:[
+
+    ]
+    // title:'hello',
+  }
+  render() {
+    return(
+      <>
+        <Title titleText="나의 하루" time="8월 1일"/>
+        <div className="todo-container">
+          <Todo id="1" content="밥먹기" done={true}/>
+        </div> 
+      </>
+    )
+  }
 }
 
 export default App;
