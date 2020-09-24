@@ -1,14 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from './logo.svg';
-import PropTypes from 'prop-types'
-
 import './App.css';
 
-class App extends Component {
-  state={
-    title:'hello',
-  }
-  render() {
+function App() {
+  return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -25,7 +20,7 @@ class App extends Component {
         </a>
       </header>
     </div>
-  }
+  );
 }
 
 export default App;
