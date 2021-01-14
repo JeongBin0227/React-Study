@@ -5,3 +5,21 @@
   background-color: #545353;
   border-radius: 15px;
 }
+.searchBar {
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchBar > input {
+  border: none;
+  font-size: 20px;
+  background: #545353;
+  color: #b9b9c5;
+  text-align: center;
+}
+
+.searchBar > img {
+  width: 30px;
+}
