@@ -5,6 +5,50 @@
   background-color: #545353;
   border-radius: 15px;
 }
+
+.professInfo {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+}
+
+.professor_card {
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0);
+}
+
+.professor_card .professor {
+  display: grid;
+  grid-row-gap: 10px;
+}
+.professor_card img {
+  width: 25px;
+  margin-left: 18px;
+}
+.professor_card .professor .professor-header {
+  display: flex;
+  align-items: flex-end;
+}
+
+.professor-name {
+  font-size: 20px;
+}
+
+.professor-position {
+  font-size: 12px;
+}
+
+.professor-school {
+  font-size: 12px;
+}
+
+.professor-department {
+  font-size: 12px;
+}
+
+.professor-email {
+  font-size: 12px;
+}
+
 .searchBar {
   margin-bottom: 8px;
   display: flex;
