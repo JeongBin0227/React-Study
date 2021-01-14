@@ -14,6 +14,7 @@ const index = () => {
       </div>
       <div className="selectBar">
         <SelectorBar selector={selector}></SelectorBar>
+        <SelectorBar selector={selector}></SelectorBar>
       </div>
       <div className="professInfo">
         {professors.map((professor) => (

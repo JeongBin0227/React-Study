@@ -23,8 +23,8 @@ const ProfessorCard = ({ professor }) => {
           </a>
         </div>
         <div className="professor-school">{professor.school}</div>
-        <div className="professor-position">{professor.department}</div>
-        <div className="professor-position">{professor.email}</div>
+        <div className="professor-department">{professor.department}</div>
+        <div className="professor-email">{professor.email}</div>
       </div>
     </Card>
   );
