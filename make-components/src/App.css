@@ -67,3 +67,17 @@
 .searchBar > img {
   width: 30px;
 }
+
+.selectBar {
+  margin-bottom: 16px;
+  display: flex;
+  place-content: space-around;
+}
+
+.search-icon {
+  width: 10px;
+}
+
+.custom-select > select {
+  width: 9rem;
+}
