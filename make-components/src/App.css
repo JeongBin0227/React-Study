@@ -5,6 +5,7 @@
   height: 500px;
   background-color: #545353;
   border-radius: 15px;
+  overflow-x: scroll;
 }
 
 .professInfo {
@@ -22,8 +23,8 @@
   grid-row-gap: 10px;
 }
 .professor_card img {
-  width: 25px;
-  margin-left: 18px;
+  width: 20px;
+  margin-left: 23px;
 }
 .professor_card .professor .professor-header {
   display: flex;
@@ -31,7 +32,7 @@
 }
 
 .professor-name {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .professor-position {
@@ -81,4 +82,12 @@
 
 .custom-select > select {
   width: 9rem;
+}
+
+.restaurant {
+  display: flex;
+}
+
+.menu {
+  display: flex;
 }
