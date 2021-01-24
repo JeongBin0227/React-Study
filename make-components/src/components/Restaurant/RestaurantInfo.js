@@ -13,6 +13,7 @@ const RestaurantInfo = ({}) => {
       <div className="sub">
         <span>김치철판볶음밥 등 최고의 맛집</span>
         <span>김치철판볶음밥 등 최고의 맛집1</span>
+        <span>김치철판볶음밥 등 최고의 맛집2</span>
       </div>
     </div>
   );
