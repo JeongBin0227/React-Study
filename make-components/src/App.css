@@ -89,5 +89,20 @@
 }
 
 .menu {
+  display: table;
+  width: 100%;
+}
+
+.menuTab {
+  display: table-cell;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.main {
   display: flex;
+}
+
+.selected {
+  color: green;
 }
