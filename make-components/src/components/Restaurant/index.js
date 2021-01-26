@@ -3,6 +3,7 @@ import styled from "styled-components";
 import SearchBar from "./SearchBar";
 import RestaurantInfo from "./RestaurantInfo";
 import RestaurantTab from "./RestaurantTab";
+import RestaurantKakaoMap from "./RestaurantKakaoMap";
 
 const NaverMap = styled.div`
   width:150px
@@ -19,6 +20,7 @@ const index = () => {
         <SearchBar></SearchBar>
         <RestaurantInfo></RestaurantInfo>
         <RestaurantTab></RestaurantTab>
+        <RestaurantKakaoMap></RestaurantKakaoMap>
       </div>
       <NaverMap className="naverMap"></NaverMap>
     </div>
