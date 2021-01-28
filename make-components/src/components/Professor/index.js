@@ -1,33 +1,46 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import professors from "../../data/professor";
 import ProfessorCard from "./ProfessorCard";
 import SelectorBar from "./SelectorBar";
 import SearchBar from "./SearchBar";
 
 const Index = () => {
-  // console.log(professors);
-  // const [schoolSelector, setSchoolSelector] = useState([]);
-  // const [departmentSelector, setDepartmentSelector] = useState(['데이터 베이스 시스템']);
+  const [professorCard, setProfessorCard] = useState(professors);
+  const professorSchool = professors.map((professor) => professor.school);
+  const professorDepartment = professors.map(
+    (professor) => professor.department
+  );
+  const changeProfessorSchool = (school) => {
+    setProfessorCard(
+      professors.filter((professor) => professor.school === school)
+    );
+  };
 
-  const professorSchool = professors.map(professor => professor.school)
-  const professorDepartment = professors.map(professor => professor.department)
+  const changeProfessorDepartment = (department) => {
+    setProfessorCard(
+      professors.filter((professor) => professor.department === department)
+    );
+  };
 
-  // setUsers([...users, user]);
-
-  // setSchoolSelector([...new Set(professorSchool)])
-  // setDepartmentSelector([...new Set(professorDepartment)])
-  // setDepartmentSelector('데이터 베이스 시스템')
   return (
     <div>
       <div className="searchBar">
-        <SearchBar></SearchBar>
+        <SearchBar changeProfessorSchool={changeProfessorSchool}></SearchBar>
       </div>
       <div className="selectBar">
-        <SelectorBar selector={[...new Set(professorSchool)]}></SelectorBar>
-        <SelectorBar selector={[...new Set(professorDepartment)]}></SelectorBar>
+        {/* <SelectorBar selector={[...new Set(professorSchool)]}></SelectorBar> */}
+        {/* <SelectorBar selector={[...new Set(professorDepartment)]}></SelectorBar> */}
+        <SelectorBar
+          selector={[...new Set(professorSchool)]}
+          filterSelector={changeProfessorSchool}
+        ></SelectorBar>
+        <SelectorBar
+          selector={[...new Set(professorDepartment)]}
+          filterSelector={changeProfessorDepartment}
+        ></SelectorBar>
       </div>
       <div className="professInfo">
-        {professors.map((professor) => (
+        {professorCard.map((professor) => (
           <ProfessorCard professor={professor}></ProfessorCard>
         ))}
       </div>
