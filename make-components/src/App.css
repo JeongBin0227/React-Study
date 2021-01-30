@@ -21,6 +21,7 @@
 .professor_card .professor {
   display: grid;
   grid-row-gap: 10px;
+  color: #e2e2ea
 }
 .professor_card img {
   width: 20px;
@@ -81,7 +82,10 @@
 }
 
 .custom-select > select {
-  width: 9rem;
+  width: 8rem;
+  border-color: #e2e2ea;
+  padding: 3px;
+  font-size: 12px;
 }
 
 .restaurant {
@@ -101,8 +105,46 @@
 
 .main {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.main span {
+  margin: 0 20px;
+}
 .selected {
   color: green;
+}
+
+.RestaurantSearch {
+  display: block;
+  width: 340px;
+  margin: auto;
+  padding: 15px 25px;
+}
+
+.search_wrap {
+  position: relative;
+}
+.RestaurantSearch .search_box {
+  position: relative;
+    z-index: 110;
+    height: 42px;
+    padding-left: 45px;
+    border: 2px solid #19ce60;
+    border-radius: 5px;
+}
+
+.search-icon {
+  overflow: hidden;
+  display: inline-block;
+  width: 25px;
+  height: 24px;
+  font-size: 0;
+  color: transparent;
+  vertical-align: top;
+  background-position: 0 -112px;
+  position: absolute;
+  top: 9px;
+  left: 15px;
 }
