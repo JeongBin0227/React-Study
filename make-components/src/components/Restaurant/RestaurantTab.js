@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import RestaurantHome from "../Restaurant/RestaurantHome";
+import RestaurantMenu from "../Restaurant/RestaurantMenu";
+import RestaurantReview from "../Restaurant/RestaurantReview";
+import RestaurantPicture from "../Restaurant/RestaurantPicture";
 
 const RestaurantTab = ({}) => {
   const [menuTab, setMenuTab] = useState("0");
@@ -36,7 +40,12 @@ const RestaurantTab = ({}) => {
           사진
         </span>
       </div>
-      <div className="contents">{<span>{menuTab}</span>}</div>
+      <div className="contents">
+        {menuTab === "0" ? <RestaurantHome></RestaurantHome> : null}
+        {menuTab === "1" ? <RestaurantMenu></RestaurantMenu> : null}
+        {menuTab === "2" ? <RestaurantReview></RestaurantReview> : null}
+        {menuTab === "3" ? <RestaurantPicture></RestaurantPicture> : null}
+      </div>
     </>
   );
 };
