@@ -22,10 +22,21 @@ const Index = () => {
     );
   };
 
+  const searchComment = (search) => {
+    console.log(search);
+    setProfessorCard(
+      professors.filter(
+        (professor) =>
+          professor.school.indexOf(search) > 0 ||
+          professor.department.indexOf(search) > 0
+      )
+    );
+  };
+
   return (
     <div>
       <div className="searchBar">
-        <SearchBar changeProfessorSchool={changeProfessorSchool}></SearchBar>
+        <SearchBar filterSelector={searchComment}></SearchBar>
       </div>
       <div className="selectBar">
         {/* <SelectorBar selector={[...new Set(professorSchool)]}></SelectorBar> */}
