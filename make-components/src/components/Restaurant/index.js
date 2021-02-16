@@ -20,9 +20,8 @@ const index = () => {
         <SearchBar></SearchBar>
         <RestaurantInfo></RestaurantInfo>
         <RestaurantTab></RestaurantTab>
-        <RestaurantKakaoMap></RestaurantKakaoMap>
       </div>
-      <NaverMap className="naverMap"></NaverMap>
+      <RestaurantKakaoMap></RestaurantKakaoMap>
     </div>
   );
 };
