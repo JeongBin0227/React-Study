@@ -3,6 +3,7 @@ import "./App.css";
 import "./SelectorBox.css";
 import Professor from "./components/Professor/index";
 import Restaurant from "./components/Restaurant/index";
+import Weather from "./components/Weather/index";
 
 function App() {
   return (
@@ -12,6 +13,9 @@ function App() {
       </div>
       <div>
         <Restaurant></Restaurant>
+      </div>
+      <div>
+        <Weather></Weather>
       </div>
     </div>
   );
