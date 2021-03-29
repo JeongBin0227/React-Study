@@ -284,25 +284,25 @@ export const Weather = () => {
     //   });
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const fetchedData = await getWeather();
-      console.log(fetchedData);
-      setInitialData({
-        ...initialData,
-        temperature: Math.floor(fetchedData.main.temp - 273.15),
-        maxTemperature: Math.floor(fetchedData.main.temp_max - 273.15),
-        minTemperature: Math.floor(fetchedData.main.temp_min - 273.15),
-        main: fetchedData.weather[0].main,
-        icon: fetchedData.weather[0].icon,
-        name: fetchedData.name,
-        humidity: fetchedData.main.humidity,
-        clouds: fetchedData.clouds.all,
-      });
-      console.log(fetchedData);
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const fetchedData = await getWeather();
+  //     console.log(fetchedData);
+  //     setInitialData({
+  //       ...initialData,
+  //       temperature: Math.floor(fetchedData.main.temp - 273.15),
+  //       maxTemperature: Math.floor(fetchedData.main.temp_max - 273.15),
+  //       minTemperature: Math.floor(fetchedData.main.temp_min - 273.15),
+  //       main: fetchedData.weather[0].main,
+  //       icon: fetchedData.weather[0].icon,
+  //       name: fetchedData.name,
+  //       humidity: fetchedData.main.humidity,
+  //       clouds: fetchedData.clouds.all,
+  //     });
+  //     console.log(fetchedData);
+  //   };
+  //   fetchData();
+  // }, []);
 
   // useEffect(() => {
   //   getPosition();
@@ -340,6 +340,83 @@ export const Weather = () => {
   // const img_url = `http://openweathermap.org/img/w/${icon}.png`;
 
   console.log(initialData);
+
+  const animationConfig = {
+    beforeScale: 0.7,
+    targetY: "0.6em",
+    duration: "0.4s",
+    beforeOpacity: 0,
+    delay: 500,
+  };
+
+  // useEffect(() => {
+  //   const marginTop = 0;
+  //   setInterval(() => {
+  //     const firstChild = document.querySelector(".slide ul").firstChild;
+  //     const newChild = document.createElement("li");
+  //     newChild.innerHTML = firstChild.innerHTML;
+  //     document.querySelector(".slide ul").appendChild(newChild);
+  //     console.log(document.querySelector(".slide ul").getAnimations());
+  //     // document.querySelector(".slide ul").removeChild(firstChild);
+  //   }, 4000);
+  // }, []);
+
+  useEffect(() => {
+    var items = document.querySelectorAll(".item");
+    var container = document.querySelector("#container");
+    var first = false;
+
+    function setup() {
+      for (var i = 0; i < items.length; i++) {
+        var item = items[i];
+
+        console.log(first);
+        item.displayData = {
+          one: getRandomNumber(),
+          two: getRandomNumber2(),
+        };
+
+        setContent(item);
+      }
+    }
+    setup();
+
+    container.addEventListener(
+      "animationiteration",
+      duplicateAndGenerate,
+      false
+    );
+
+    function duplicateAndGenerate(e) {
+      var item = e.target;
+      first = !first;
+      item.displayData = {
+        one: item.displayData.two,
+        two: getRandomNumber3(),
+      };
+
+      setContent(item);
+    }
+
+    function setContent(item) {
+      item.children[0].innerText = item.displayData.one;
+      item.children[1].innerText = item.displayData.two;
+    }
+
+    function getRandomNumber() {
+      return 78;
+    }
+
+    function getRandomNumber2() {
+      return 80;
+    }
+
+    function getRandomNumber3() {
+      if (first) return 78;
+      else return 80;
+    }
+  });
+
   return (
     <>
       <h1>오늘의 날씨</h1>
@@ -353,13 +430,24 @@ export const Weather = () => {
       <h3>습도: </h3>
       <h3>구름: </h3>
 
-      <h3 style={transform= translate3d(0px, 0px, 0px)}>
-        <img src={`http://openweathermap.org/img/w/${icon}.png`} />
-        {main} {temperature}°C {minTemperature}°C / {maxTemperature}°C
-      </h3>
-      <h3>
-        {humidity} {clouds}
-      </h3>
+      <div id="container">
+        <div className="itemGroup">
+          <div className="item">
+            <p>
+              <img src={`http://openweathermap.org/img/w/${icon}.png`} />
+              {main} {temperature}°C {minTemperature}°C / {maxTemperature}°C
+            </p>
+            <p>dasd</p>
+          </div>
+        </div>
+
+        {/* <div className="itemGroup">
+          <div className="item">
+            <p>{humidity}</p>
+            <p>{clouds}</p>
+          </div>
+        </div> */}
+      </div>
     </>
   );
 };
