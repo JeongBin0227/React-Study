@@ -219,15 +219,10 @@ export const Weather = () => {
   });
 
   const getPosition = () => {
-    const options = {
-      timeout: 10000,
-      enableHighAccuracy: true,
-      maximumAge: 0,
-    };
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
+          console.log(position);
           setInitialData({
             ...initialData,
             lat: position.coords.latitude,
@@ -236,8 +231,7 @@ export const Weather = () => {
         },
         (error) => {
           console.log(error);
-        },
-        options
+        }
       );
     }
   };
@@ -304,27 +298,27 @@ export const Weather = () => {
   //   fetchData();
   // }, []);
 
-  // useEffect(() => {
-  //   getPosition();
+  useEffect(() => {
+    getPosition();
 
-  //   const fetchData = async () => {
-  //     const lat = 37.49;
-  //     const long = 127.03;
-  //     await fetch(
-  //       `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=${API_KEY}`
-  //     ).then((json) => {
-  //       // console.log(json);
-  //       // console.log(Math.floor(json.main.temp - 273.15));
-  //       // console.log(json.weather[0].main);
-  //       // console.log(json.weather[0].icon);
-  //       // setInitUpdate(json);
-  //       // console.log(initialData);
-  //       return json;
-  //     });
-  //   };
+    const fetchData = async () => {
+      const lat = 37.49;
+      const long = 127.03;
+      await fetch(
+        `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&APPID=${API_KEY}`
+      ).then((json) => {
+        // console.log(json);
+        // console.log(Math.floor(json.main.temp - 273.15));
+        // console.log(json.weather[0].main);
+        // console.log(json.weather[0].icon);
+        // setInitUpdate(json);
+        // console.log(initialData);
+        return json;
+      });
+    };
 
-  //   console.log(fetchData);
-  // }, []);
+    console.log(fetchData);
+  }, []);
 
   // const { temperature, name, icon } = initialData;
   const {
@@ -361,61 +355,62 @@ export const Weather = () => {
   //   }, 4000);
   // }, []);
 
-  useEffect(() => {
-    var items = document.querySelectorAll(".item");
-    var container = document.querySelector("#container");
-    var first = false;
+  // useEffect(() => {
+  //   var items = document.querySelectorAll(".item");
+  //   var container = document.querySelector("#container");
+  //   var first = false;
 
-    function setup() {
-      for (var i = 0; i < items.length; i++) {
-        var item = items[i];
+  //   function setup() {
+  //     for (var i = 0; i < items.length; i++) {
+  //       var item = items[i];
 
-        console.log(first);
-        item.displayData = {
-          one: getRandomNumber(),
-          two: getRandomNumber2(),
-        };
+  //       console.log(first);
+  //       item.displayData = {
+  //         one: getRandomNumber(),
+  //         two: getRandomNumber2(),
+  //       };
 
-        setContent(item);
-      }
-    }
-    setup();
+  //       setContent(item);
+  //     }
+  //   }
+  //   setup();
 
-    container.addEventListener(
-      "animationiteration",
-      duplicateAndGenerate,
-      false
-    );
+  //   container.addEventListener(
+  //     "animationiteration",
+  //     duplicateAndGenerate,
+  //     false
+  //   );
 
-    function duplicateAndGenerate(e) {
-      var item = e.target;
-      first = !first;
-      item.displayData = {
-        one: item.displayData.two,
-        two: getRandomNumber3(),
-      };
+  //   function duplicateAndGenerate(e) {
+  //     var item = e.target;
+  //     first = !first;
 
-      setContent(item);
-    }
+  //     item.displayData = {
+  //       one: item.displayData.two,
+  //       two: getRandomNumber3(),
+  //     };
 
-    function setContent(item) {
-      item.children[0].innerText = item.displayData.one;
-      item.children[1].innerText = item.displayData.two;
-    }
+  //     setContent(item);
+  //   }
 
-    function getRandomNumber() {
-      return 78;
-    }
+  //   function setContent(item) {
+  //     item.children[0].innerText = item.displayData.one;
+  //     item.children[1].innerText = item.displayData.two;
+  //   }
 
-    function getRandomNumber2() {
-      return 80;
-    }
+  //   function getRandomNumber() {
+  //     return 78;
+  //   }
 
-    function getRandomNumber3() {
-      if (first) return 78;
-      else return 80;
-    }
-  });
+  //   function getRandomNumber2() {
+  //     return 80;
+  //   }
+
+  //   function getRandomNumber3() {
+  //     if (first) return 78;
+  //     else return 80;
+  //   }
+  // });
 
   return (
     <>
@@ -452,4 +447,25 @@ export const Weather = () => {
   );
 };
 
+// function Weather(params) {
+//   const [hour, setHour] = useState(0);
+//   const [minute, setMinute] = useState(0);
+//   const [second, setSecond] = useState(0);
+
+//   setInterval(() => {
+//     const time = new Date();
+
+//     setHour(time.getHours());
+//     setMinute(time.getMinutes());
+//     setSecond(time.getSeconds());
+//   }, 1000);
+
+//   return (
+//     <>
+//       <div className="center">
+//         {hour}:{minute}:{second}
+//       </div>
+//     </>
+//   );
+// }
 export default Weather;
